@@ -1,35 +1,29 @@
-#!/bin/sh
+#! /bin/sh
+# /etc/init.d/tightvncserver
+#
 ### BEGIN INIT INFO
 # Provides:          tightvncserver
-# Required-Start:    $local_fs
-# Required-Stop:     $local_fs
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Start/stop tightvncserver
+# Short-Description: Start daemon at boot time
+# Description:       Enable service provided by daemon.
 ### END INIT INFO
- 
-# More details see:
-# Your Face Here
- 
-### Customize this entry
-# Set the USER variable to the name of the user to start tightvncserver under
-export USER='pi'
-### End customization required
- 
-eval cd ~$USER
- 
+# Carry out specific functions when asked to by the system
 case "$1" in
   start)
-    su $USER -c '/usr/bin/tightvncserver :1'
-    echo "Starting TightVNC server for $USER "
+    echo "Sign in when ready..."
+ /usr/bin/tightvncserver
     ;;
   stop)
-    pkill Xtightvnc
-    echo "Tightvncserver stopped"
+    killall/or_stop tightvncserver
+    echo "Connection Closed"
     ;;
   *)
     echo "Usage: /etc/init.d/tightvncserver {start|stop}"
     exit 1
     ;;
 esac
+
 exit 0
