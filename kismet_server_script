@@ -1,0 +1,31 @@
+#! /bin/sh
+# /etc/init.d/kismet_server_script
+#
+### BEGIN INIT INFO
+# Provides:          Kismet on boot
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start daemon at boot time
+# Description:       Enable service provided by daemon.
+### END INIT INFO
+
+# Carry out specific functions when asked to by the system
+
+case "$1" in
+  start)
+    echo "...and the planets are aligned!"
+        sudo /usr/local/bin/kismet_server --daemonize
+    ;;
+  stop)
+    killall kismet_server
+    echo "Face Melting Postponed"
+    ;;
+  *)
+    echo "Usage: /etc/init.d/kismet_server_script {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
