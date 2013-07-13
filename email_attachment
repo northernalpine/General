@@ -1,0 +1,9 @@
+#!/bin/bash
+  echo Email Subject?
+	read SUBJECT
+	echo Where is the file located?
+	read FILELOCATION
+	echo What email address are we sending this to?
+	read EMAIL
+	
+	mpack -s "$SUBJECT" $FILELOCATION $EMAIL
