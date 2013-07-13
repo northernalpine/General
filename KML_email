@@ -1,0 +1,7 @@
+#!bin/bash
+  echo Input Desired KML Filename
+	read FILENAME
+	echo What email address do you want it mailed to?
+	read EMAIL
+	sudo python /home/pi/products/kml_files/netxml2kml.py --kml -o $FILENAME /home/pi/products/kismet_files/*.netxml /home/pi/products/kml_files
+	mpack -s "KML Request" /home/pi/products/kml_files/$FILENAME $EMAIL
